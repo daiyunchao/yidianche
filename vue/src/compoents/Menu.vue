@@ -1,41 +1,17 @@
 <template>
   <div class="menu">
-    <ul class="menu_index">
-      <li class="active">
-        <i class="ydc-icon ydc-icon-home fl"></i>首页
+    <ul v-for="menu in menus" :key="menu.key" :class="menu.name">
+      <li
+        v-for="item in menu.items"
+        :class="item.isActive?'active':''"
+        :key="item.cnName"
+        :style="item.isDisabled?{color:'#999',cursor:'auto'}:''"
+        @mousemove="changeActive(item.cnName)"
+        @mouseout="changeActiveLeave(item.cnName)"
+      >
+        <i :class="item.icon"></i>
+        {{item.cnName}}
       </li>
-      <li>
-        <i class="ydc-icon ydc-icon-find fl"></i>发布
-      </li>
-    </ul>
-    <ul class="meun_manage">
-      <li style="color:#999">
-        <i class="ydc-icon ydc-icon-file fl"></i>管理
-      </li>
-      <li>内容管理</li>
-      <li>内容同步</li>
-      <li>素材管理</li>
-    </ul>
-    <ul class="meun_manage">
-      <li style="color:#999">
-        <i class="ydc-icon ydc-icon-record fl"></i>数据
-      </li>
-      <li>订阅数据</li>
-      <li>内容数据</li>
-      <li>指数星级</li>
-    </ul>
-    <ul class="meun_manage">
-      <li style="color:#999">
-        <i class="ydc-icon ydc-icon-set fl"></i>设置
-      </li>
-      <li>账号信息</li>
-      <li>账号状态</li>
-    </ul>
-    <ul class="meun_manage">
-      <li style="color:#999">
-        <i class="ydc-icon ydc-icon-customer fl"></i>客服
-      </li>
-      <li>在线客服</li>
     </ul>
   </div>
 </template>
@@ -43,7 +19,167 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  name: "Menu"
+  name: "Menu",
+  data() {
+    return {
+      menus: [
+        {
+          name: "menu_index",
+          key: "index",
+          items: [
+            {
+              cnName: "首页",
+              icon: "ydc-icon ydc-icon-home fl",
+              isActive: true,
+              isCur: true,
+              isDisabled: false
+            },
+            {
+              cnName: "发布",
+              icon: "ydc-icon ydc-icon-find fl",
+              isActive: false,
+              isDisabled: false
+            }
+          ]
+        },
+        {
+          name: "meun_manage",
+          key: "manage",
+          items: [
+            {
+              cnName: "管理",
+              icon: "ydc-icon ydc-icon-file fl",
+              isActive: false,
+              isDisabled: true
+            },
+            {
+              cnName: "内容管理",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            },
+            {
+              cnName: "内容同步",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            },
+            {
+              cnName: "素材管理",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            }
+          ]
+        },
+        {
+          name: "meun_manage",
+          key: "data",
+          items: [
+            {
+              cnName: "数据",
+              icon: "ydc-icon ydc-icon-record fl",
+              isActive: false,
+              isDisabled: true
+            },
+            {
+              cnName: "订阅数据",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            },
+            {
+              cnName: "内容数据",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            },
+            {
+              cnName: "指数星级",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            }
+          ]
+        },
+        {
+          name: "meun_manage",
+          key: "setting",
+          items: [
+            {
+              cnName: "设置",
+              icon: "ydc-icon ydc-icon-set fl",
+              isActive: false,
+              isDisabled: true
+            },
+            {
+              cnName: "账号信息",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            },
+            {
+              cnName: "账号状态",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            }
+          ]
+        },
+        {
+          name: "meun_manage",
+          key: "kefu",
+          items: [
+            {
+              cnName: "客服",
+              icon: "ydc-icon ydc-icon-customer fl",
+              isActive: false,
+              isDisabled: true
+            },
+            {
+              cnName: "在线客服",
+              icon: "",
+              isActive: false,
+              isDisabled: false
+            }
+          ]
+        }
+      ]
+    };
+  },
+  methods: {
+    changeActive(name) {
+      for (let index = 0; index < this.menus.length; index++) {
+        const menu = this.menus[index];
+        for (let j = 0; j < menu.items.length; j++) {
+          const item = menu.items[j];
+
+          if (item.cnName == name) {
+            if (item.isDisabled) {
+              break;
+              break;
+            }
+            item.isActive = true;
+          } else {
+            if (!item.isCur) {
+              item.isActive = false;
+            }
+          }
+        }
+      }
+    },
+    changeActiveLeave() {
+      for (let index = 0; index < this.menus.length; index++) {
+        const menu = this.menus[index];
+        for (let j = 0; j < menu.items.length; j++) {
+          const item = menu.items[j];
+          if (!item.isCur) {
+            item.isActive = false;
+          }
+        }
+      }
+    }
+  }
 });
 </script>
 
@@ -57,7 +193,7 @@ export default Vue.extend({
   font-size: 14px;
   padding-top: 20px;
 }
-.menu_index{
+.menu_index {
   border-top: 0px !important;
 }
 .menu ul {
@@ -72,6 +208,9 @@ export default Vue.extend({
   justify-content: center;
   align-items: center;
   padding-right: 15px;
+  translate: 1s;
+  cursor: pointer;
+  transition: color 0.5s;
 }
 
 .active {

@@ -6,7 +6,7 @@
         <Menu></Menu>
       </div>
       <div class="main_content">
-        <Home></Home>
+        <router-view></router-view>
       </div>
     </div>
     <Footer></Footer>
@@ -18,15 +18,15 @@ import Vue from "vue";
 import Header from "../compoents/Header.vue";
 import Menu from "../compoents/Menu.vue";
 import Footer from "../compoents/Footer.vue";
-import Home from "./Home.vue";
+import HomeRouter from "../routers/homeRouter";
 export default Vue.extend({
   name: "Nav",
   components: {
     Header,
-    Home,
     Menu,
     Footer
-  }
+  },
+  router: HomeRouter
 });
 </script>
 <style scoped>
