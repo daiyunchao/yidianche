@@ -35,44 +35,76 @@
       </div>
     </div>
     <div class="home_ads">
-      <swiper :options="swiperOption">
-        <swiper-slide>
-          <img src="../images/ad1.jpg" alt />
-        </swiper-slide>
-        <swiper-slide>
-          <img src="../images/ad2.jpg" alt />
-        </swiper-slide>
-        <swiper-slide>
-          <img src="../images/ad3.jpg" alt />
-        </swiper-slide>
-      </swiper>
+      <SwiperAds :adImgs="adImgs" />
     </div>
-    <div class="home_list"></div>
+    <div class="home_list">
+      <MutlList :contents="contents" :changeTab="changeTab"></MutlList>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+import SwiperAds from "../compoents/SwiperAds.vue";
+import MutlList from "../compoents/MutlList.vue";
 export default Vue.extend({
   name: "Home",
   components: {
-    swiper,
-    swiperSlide
+    SwiperAds,
+    MutlList
+  },
+  methods:{
+    changeTab(key){
+      for (const key in this.contents) {
+        if (this.contents.hasOwnProperty(key)) {
+          const item = this.contents[key];
+          item.isActive=false;
+        }
+      }
+      this.contents[key].isActive=true;
+    }
   },
   data() {
     return {
-      swiperOption: {
-        autoplay:true,
-        slidesPerView: "auto",
-        centeredSlides: true,
-        spaceBetween: 10,
-        loop: true,
-        speed: 600 
+      adImgs: ["../images/ad1.jpg", "../images/ad2.jpg", "../images/ad3.jpg"],
+      contents: {
+        gonggao: {
+          name: "公告",
+          isActive: true,
+          list: [
+            {
+              title:
+                "一点车点讯号平台关于封禁违规账号的通知（4月13日-4月20日）",
+              isNew: true,
+              time:'2017-04-17 10:00:00'
+            },
+            {
+              title:
+                "一点车点讯号平台关于封禁违规账号的通知（4月13日-4月20日）",
+              isNew: false,
+              time:'2017-04-17 10:00:00'
+            }
+          ]
+        },
+        yidianchezixun: {
+          name: "一点车资讯",
+          isActive: false,
+          list: [
+            {
+              title:
+                "大号“思域”全新十代雅阁，革新换代后的全新十代雅阁到底如何！",
+              isNew: true,
+              time:'2017-04-17 10:00:00'
+            },
+            {
+              title: "在国内为什么丰田阿尔法加价那么厉害还是会有人买？",
+              isNew: false,
+              time:'2017-04-17 10:00:00'
+            }
+          ]
+        }
       }
     };
-  },
-
-  methods: {}
+  }
 });
 </script>
 <style scoped>
@@ -144,10 +176,9 @@ export default Vue.extend({
   background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  transition: background-image 1s ease-in-out;
 }
-.home_ads img {
-  width: 100%;
+.home_list {
+  margin-top: 20px;
 }
 </style>
 

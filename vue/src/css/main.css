@@ -3,3 +3,11 @@
   margin: 0px;
   font-family: 'PingFangSC','helvetica neue','hiragino sans gb','arial','microsoft yahei ui','microsoft yahei','simsun','sans-serif'!important;
 }
+.flexCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.disabled{
+  cursor: no-drop!important
+}

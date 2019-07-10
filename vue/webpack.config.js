@@ -13,12 +13,13 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.ts', '.tsx'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': path.join(__dirname,'./src'),
+      '@': path.join(__dirname, './src'),
     }
   },
   module: {
     rules: [
       { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
+      { test: /\.less$/i, use: ['style-loader', 'css-loader', 'less-loader'] },
       {
         test: /\.ts$/i,
         exclude: /node_modiles/,
@@ -28,13 +29,13 @@ module.exports = {
         }
       },
       {
-        test:/\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif)$/i,
         exclude: /node_modiles/,
-        use:{
-          loader:'url-loader',
-          options:{
-            limit:1,
-            name:'images/[name].[ext]'
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 1,
+            name: 'images/[name].[ext]'
           }
         }
       },
