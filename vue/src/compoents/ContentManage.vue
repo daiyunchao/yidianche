@@ -61,6 +61,7 @@ export default Vue.extend({
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px solid #d0d0d0;
+  margin-bottom: 20px;
 }
 .type_info {
   color: #999;
