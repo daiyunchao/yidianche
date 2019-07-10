@@ -13,8 +13,8 @@ export default Vue.extend({});
   width: 100%;
   text-align: center;
   margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  margin-top: 50px;
+  margin-bottom: 30px;
   color: #666;
   font-size: 14px;
 }

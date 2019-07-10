@@ -1,6 +1,7 @@
 *{
   padding: 0px;
   margin: 0px;
+  font-size: 14px;
   font-family: 'PingFangSC','helvetica neue','hiragino sans gb','arial','microsoft yahei ui','microsoft yahei','simsun','sans-serif'!important;
 }
 .flexCenter{
@@ -10,4 +11,10 @@
 }
 .disabled{
   cursor: no-drop!important
+}
+.theme_color{
+  color: #ff5f5f;
+}
+.marginR5{
+  margin-right: 5px;
 }
