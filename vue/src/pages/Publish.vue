@@ -1,70 +1,145 @@
 <template>
   <div class="publish">
-    <div class="public_type">
-      <div class="type_cons">
-        <ul class="type_ul">
-          <li class="type_active">发布文章</li>
-          <li>发布图集</li>
-        </ul>
+    <ContentManage :tabs="tabs" extSoltName="extInfo" :changeHeaderTab="changeHeaderTab">
+      <div slot="extInfo">
         <div class="type_info">
           今日发布数量:&nbsp;&nbsp;
           <span class="marginR5 theme_color">0</span>/6
           <span class="theme_color">发文规范</span>
         </div>
       </div>
-    </div>
-    <div class="contents">
-      <div class="toast">标题字数需在11字到30字之间。</div>
-      <div class="title_con">
-        <input type="text" class="title_txt" placeholder="请输入标题，为了更好的展示效果，建议标题字数在30个汉字以内" />
-        <div class="txt_num_ts">
-          <span class="theme_color marginR5">0</span>/30
-        </div>
-      </div>
-      <div class="html_editor">
-        <Editor />
-      </div>
-      <div class="article_type">
-        <div class="flex_label">分类:</div>
-        <div class="flex_content">
-          <select name id class="article_select">
-            <option value="01">分类一</option>
-          </select>
-          <select name id class="article_select">
-            <option value="01">分类二</option>
-          </select>
-        </div>
-      </div>
-      <div class="article_img">
-        <div class="flex_label">封面:</div>
-        <div class="flex_content">
-          <div class="img_con">
-            <img src="../images/noimg.gif" alt />
+      <div slot="publish_article">
+        <div class="publish_article">
+          <div class="toast">标题字数需在11字到30字之间。</div>
+          <div class="title_con">
+            <input type="text" class="title_txt" placeholder="请输入标题，为了更好的展示效果，建议标题字数在30个汉字以内" />
+            <div class="txt_num_ts">
+              <span class="theme_color marginR5">0</span>/30
+            </div>
           </div>
-          <input class="file_upload" type="file" name="img_upload" id="img_upload" />
-          <button class="upload_btn" @click="uploadImg">上传图片</button>
-          <span class="upload_text">图片尺寸建议：800*400 图片大小不超过1MB</span>
+          <div class="html_editor">
+            <Editor />
+          </div>
+          <div class="article_type">
+            <div class="flex_label">分类:</div>
+            <div class="flex_content">
+              <select name id class="article_select">
+                <option value="01">分类一</option>
+              </select>
+              <select name id class="article_select">
+                <option value="01">分类二</option>
+              </select>
+            </div>
+          </div>
+          <div class="article_img">
+            <div class="flex_label">封面:</div>
+            <div class="flex_content">
+              <div class="img_con">
+                <img src="../images/noimg.gif" alt />
+              </div>
+              <input class="file_upload" type="file" name="img_upload" id="img_upload" />
+              <button class="upload_btn" @click="uploadImg">上传图片</button>
+              <span class="upload_text">图片尺寸建议：800*400 图片大小不超过1MB</span>
+            </div>
+          </div>
+          <div class="btns">
+            <div class="flex_label">&nbsp;</div>
+            <div class="flex_content">
+              <div class="publish_btn send">发布</div>
+              <div class="publish_btn drash">保存草稿</div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="btns">
-        <div class="flex_label">&nbsp;</div>
-        <div class="flex_content">
-          <div class="publish_btn send">发布</div>
-          <div class="publish_btn drash">保存草稿</div>
+      <div slot="publish_imgs">
+        <div class="public_imgs">
+          <div class="toast">标题字数需在11字到30字之间。</div>
+          <div class="cloumn">
+            <div class="flex_label">标题</div>
+            <div class="flex_content">
+              <div class="txt_con">
+                <input type="text" class="title_txt" placeholder="请输入标题，为了更好的展示效果，建议标题字数在30个汉字以内" />
+                <div class="txt_num_ts">
+                  <span class="theme_color marginR5">0</span>/30
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="cloumn">
+            <div class="flex_label">描述</div>
+            <div class="flex_content">
+              <div class="txt_con">
+                <input type="text" class="title_txt" placeholder="请输入描述，统一描述" />
+                <div class="txt_num_ts">
+                  <span class="theme_color marginR5">0</span>/30
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="article_img">
+            <div class="flex_label">封面</div>
+            <div class="flex_content">
+              <div class="img_con">
+                <img src="../images/noimg.gif" alt />
+              </div>
+              <input class="file_upload" type="file" name="img_upload" id="img_upload" />
+              <button class="upload_btn" @click="uploadImg">上传图片</button>
+              <span class="upload_text">图片尺寸建议：800*400 图片大小不超过1MB</span>
+            </div>
+          </div>
+          <div class="btns">
+            <div class="flex_label">&nbsp;</div>
+            <div class="flex_content">
+              <div class="publish_btn send">发布</div>
+              <div class="publish_btn drash">保存草稿</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </ContentManage>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import Editor from "../compoents/TinyEditor.vue";
+import ContentManage from "../compoents/ContentManage.vue";
 export default Vue.extend({
+  data() {
+    return {
+      tabs: {
+        publish_article: {
+          name: "发布文章",
+          isActive: true,
+          slotName: "publish_article"
+        },
+        publish_imgs: {
+          name: "发布图集",
+          isActive: false,
+          slotName: "publish_imgs"
+        }
+      }
+    };
+  },
   components: {
-    Editor
+    Editor,
+    ContentManage
   },
   methods: {
+    changeHeaderTab(keyName) {
+      console.log("in changeHeaderTab", keyName);
+
+      for (let key in this.tabs) {
+        if (key != keyName) {
+          let info = this.tabs[key];
+          info.isActive = false;
+        } else {
+          this.tabs[keyName].isActive = true;
+        }
+      }
+
+      console.log("this.tabs==>", this.tabs);
+    },
     uploadImg() {
       document.getElementById("img_upload").click();
     }
@@ -110,6 +185,10 @@ export default Vue.extend({
 .title_con {
   width: 100%;
   margin-top: 15px;
+  position: relative;
+}
+.txt_con {
+  width: 100%;
   position: relative;
 }
 .title_txt {
@@ -220,9 +299,16 @@ export default Vue.extend({
 .send {
   background: #ff5f5f;
   color: white;
+  margin-right: 30px;
 }
 .drash {
   background: white;
   color: #ff5f5f;
+}
+.cloumn {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
 }
 </style>
