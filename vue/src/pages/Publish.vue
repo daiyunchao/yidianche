@@ -23,10 +23,10 @@
           <div class="article_type">
             <div class="flex_label">分类:</div>
             <div class="flex_content">
-              <select name id class="article_select">
+              <select name id class="select">
                 <option value="01">分类一</option>
               </select>
-              <select name id class="article_select">
+              <select name id class="select">
                 <option value="01">分类二</option>
               </select>
             </div>
@@ -103,21 +103,25 @@
 <script lang="ts">
 import Vue from "vue";
 import Editor from "../compoents/TinyEditor.vue";
+import { ITab } from "../store/Itype";
 import ContentManage from "../compoents/ContentManage.vue";
 export default Vue.extend({
   data() {
+    let publish_article: ITab = {
+      name: "发布文章",
+      isActive: true,
+      slotName: "publish_article"
+    };
+
+    let publish_imgs: ITab = {
+      name: "发布图集",
+      isActive: false,
+      slotName: "publish_imgs"
+    };
     return {
       tabs: {
-        publish_article: {
-          name: "发布文章",
-          isActive: true,
-          slotName: "publish_article"
-        },
-        publish_imgs: {
-          name: "发布图集",
-          isActive: false,
-          slotName: "publish_imgs"
-        }
+        publish_article,
+        publish_imgs
       }
     };
   },

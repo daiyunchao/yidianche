@@ -37,6 +37,9 @@ export default Vue.extend({
   justify-content: space-between;
   margin-top: 20px;
 }
+.main::-webkit-scrollbar{
+  display: none;
+}
 .main_menu {
   flex: 2;
   background: #f4f4f4;

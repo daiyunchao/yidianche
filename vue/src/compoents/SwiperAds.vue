@@ -1,18 +1,20 @@
 <template>
-<div>
-<swiper :options="swiperOption">
-    <swiper-slide v-for="img in adImgs" :key="img">
-      <img :src="img" alt />
-    </swiper-slide>
-  </swiper>
-  <!-- 暂时解决devserver加载不到图片的问题 -->
-  <div style="display:none">
-    <img src="../images/ad1.jpg" alt="">
-    <img src="../images/ad2.jpg" alt="">
-    <img src="../images/ad3.jpg" alt="">
+  <div>
+    <swiper :options="swiperOption">
+      <swiper-slide v-for="img in adImgs" :key="img">
+        <img :src="img" alt />
+      </swiper-slide>
+    </swiper>
+    <!-- 暂时解决devserver加载不到图片的问题 -->
+    <div style="display:none">
+      <img src="../images/ad1.jpg" alt />
+      <img src="../images/ad2.jpg" alt />
+      <img src="../images/ad3.jpg" alt />
+      <img src="../images/img-ad1.jpg" alt />
+      <img src="../images/img-ad2.jpg" alt />
+      <img src="../images/img-ad3.jpg" alt />
+    </div>
   </div>
-</div>
-  
 </template>
 
 <script lang="ts">

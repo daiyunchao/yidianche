@@ -29,8 +29,9 @@ export default Vue.extend({
   methods: {
     changeTab(key) {
       console.log("key==>", key);
-
-      this.$props.changeHeaderTab(key);
+      if (this.$props.changeHeaderTab) {
+        this.$props.changeHeaderTab(key);
+      }
     }
   },
   computed: {
