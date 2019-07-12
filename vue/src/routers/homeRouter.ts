@@ -7,12 +7,13 @@ import ArticleSync from '../pages/ArticleSync.vue';
 import Assets from '../pages/Asset.vue';
 import Subscribe from '../pages/Subscribe.vue'
 import ContentData from '../pages/ContentData.vue'
+import StarLevel from '../pages/StarLevel.vue'
 export default new VueRoter({
   routes: [
     {
       path: '/',
       name: 'index',
-      component: ContentData
+      component: StarLevel
     }
   ]
 })

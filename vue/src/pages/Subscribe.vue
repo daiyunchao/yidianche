@@ -7,13 +7,7 @@
       <SwiperAds :adImgs="adImgs" />
     </div>
     <div class="chartCon mgt20">
-      <div class="chartHeader">
-        详细数据
-        <span>7天</span>|
-        <span>14天</span>|
-        <span>30天</span>
-      </div>
-      <div id="echartContainer"></div>
+      <EChart name="详情数据"/>
     </div>
     <div class="dataDetail flexBetween">
       <div>数据明细</div>
@@ -33,6 +27,7 @@ import { IOverviewItem,ITableData } from "../store/Itype";
 import SwiperAds from "../compoents/SwiperAds.vue";
 import DataTable from "../compoents/DataTable.vue";
 import Pagin from '../compoents/Pagin.vue';
+import EChart from '../compoents/EChartData.vue';
 let echarts = require("echarts");
 export default Vue.extend({
   name: "Subscribe",
@@ -40,27 +35,10 @@ export default Vue.extend({
     OverView,
     SwiperAds,
     DataTable,
-    Pagin
+    Pagin,
+    EChart
   },
-  mounted() {
-    var myChart = echarts.init(document.getElementById("echartContainer"));
-    // 绘制图表
-    myChart.setOption({
-      title: { text: "数据展示" },
-      tooltip: {},
-      xAxis: {
-        data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-      },
-      yAxis: {},
-      series: [
-        {
-          name: "销量",
-          type: "bar",
-          data: [5, 20, 36, 10, 10, 20]
-        }
-      ]
-    });
-  },
+  
   data() {
     let overviews: Array<IOverviewItem> = [
       {
@@ -145,29 +123,7 @@ export default Vue.extend({
   box-sizing: border-box;
   border: 1px solid #ddd;
 }
-.chartHeader {
-  width: 100%;
-  height: 50px;
-  background: #f8f8f8;
-  line-height: 50px;
-  padding-left: 20px;
-  color: #666;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-.chartHeader span {
-  font-size: 14px;
-  margin-right: 10px;
-  color: #29adeb;
-  cursor: pointer;
-}
-.chartHeader > span:first-child {
-  margin-left: 10px;
-}
-#echartContainer {
-  width: 100%;
-  height: 500px;
-}
+
 .dataDetail {
   width: 100%;
   height: 50px;
@@ -184,8 +140,5 @@ export default Vue.extend({
 .exportExcel {
   color: #29adeb;
   cursor: pointer;
-}
-.chart_active{
-  color: #ff5f5f!important;
 }
 </style>
