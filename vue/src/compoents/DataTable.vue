@@ -20,7 +20,7 @@ export default Vue.extend({
       if (cloumn["render"]) {
         return cloumn["render"](rowData);
       } else {
-        rowData[cloumn["key"]];
+        return rowData[cloumn["key"]];
       }
     }
   }
@@ -36,8 +36,11 @@ export default Vue.extend({
   font-weight: 600;
   /* border-top: 0px; */
 }
+.data_item_header > div {
+  background-color: #edf7ff;
+}
 .data_item_header > div:hover {
-  background: transparent !important;
+  background: #edf7ff !important;
 }
 
 .data_item {

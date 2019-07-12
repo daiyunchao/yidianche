@@ -6,12 +6,13 @@ import ArticleManage from '../pages/ArticleManage.vue';
 import ArticleSync from '../pages/ArticleSync.vue';
 import Assets from '../pages/Asset.vue';
 import Subscribe from '../pages/Subscribe.vue'
+import ContentData from '../pages/ContentData.vue'
 export default new VueRoter({
   routes: [
     {
       path: '/',
       name: 'index',
-      component: Subscribe
+      component: ContentData
     }
   ]
 })

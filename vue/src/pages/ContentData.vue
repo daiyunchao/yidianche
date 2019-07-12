@@ -1,5 +1,5 @@
 <template>
-  <div class="subscribe">
+  <div class="contentdata">
     <div class="header">
       <OverView :data="overviews" />
     </div>
@@ -8,8 +8,8 @@
     </div>
     <div class="chartCon mgt20">
       <div class="chartHeader">
-        详细数据
-        <span>7天</span>|
+        整体统计
+        <span class="chart_active">7天</span>|
         <span>14天</span>|
         <span>30天</span>
       </div>
@@ -21,7 +21,7 @@
     </div>
     <DataTable :data="dataTable" />
     <div class="mgt40">
-      <Pagin/>
+      <Pagin />
     </div>
   </div>
 </template>
@@ -29,19 +29,19 @@
 <script lang="ts">
 import Vue from "vue";
 import OverView from "../compoents/OverviewData.vue";
-import { IOverviewItem,ITableData } from "../store/Itype";
+import { IOverviewItem, ITableData } from "../store/Itype";
 import SwiperAds from "../compoents/SwiperAds.vue";
 import DataTable from "../compoents/DataTable.vue";
-import Pagin from '../compoents/Pagin.vue';
+import Pagin from "../compoents/Pagin.vue";
 let echarts = require("echarts");
 export default Vue.extend({
-  name: "Subscribe",
   components: {
     OverView,
     SwiperAds,
     DataTable,
     Pagin
   },
+  name: "ContentData",
   mounted() {
     var myChart = echarts.init(document.getElementById("echartContainer"));
     // 绘制图表
@@ -65,56 +65,84 @@ export default Vue.extend({
     let overviews: Array<IOverviewItem> = [
       {
         name: "总订阅",
-        count: 100
+        count: 1400
       },
       {
         name: "昨日新增",
-        count: 10
+        count: 100
+      },
+      {
+        name: "昨日推荐",
+        count: 258
       }
     ];
 
-    let dataTable:ITableData = {
+    let dataTable: ITableData = {
       rows: [
         {
-          name: "日期",
+          name: "发布日期",
           key: "date",
           render(row) {
             return row.date;
           }
         },
         {
-          name: "新增订阅",
-          key: "addCount",
-          render(row) {
-            return row.addCount;
-          }
+          name: "阅读",
+          key: "ydCount"
+        },
+        {
+          name: "推荐",
+          key: "tjCount"
+        },
+        {
+          name: "跟贴",
+          key: "gtCount"
+        },
+        {
+          name: "分享",
+          key: "fxCount"
         }
       ],
       rowDatas: [
         {
-          id:"001",
+          id: "001",
           date: "2018-05-20",
-          addCount: 1000
+          ydCount: 1000,
+          tjCount: 1200,
+          gtCount: 333,
+          fxCount: 567
         },
         {
-          id:"002",
+          id: "002",
           date: "2018-05-21",
-          addCount: 2000
+          ydCount: 1400,
+          tjCount: 1100,
+          gtCount: 353,
+          fxCount: 597
         },
         {
-          id:"003",
+          id: "003",
           date: "2018-05-22",
-          addCount: 5000
+          ydCount: 1100,
+          tjCount: 1400,
+          gtCount: 597,
+          fxCount: 353
         },
         {
-          id:"004",
+          id: "004",
           date: "2018-05-23",
-          addCount: 6000
+          ydCount: 1400,
+          tjCount: 1100,
+          gtCount: 353,
+          fxCount: 597
         },
         {
-          id:"005",
+          id: "005",
           date: "2018-05-24",
-          addCount: 10
+          ydCount: 1000,
+          tjCount: 1200,
+          gtCount: 333,
+          fxCount: 567
         }
       ]
     };
@@ -128,9 +156,6 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.subscribe {
-  color: #666;
-}
 .header {
   width: 100%;
   background: #f4f4f4;
@@ -161,6 +186,9 @@ export default Vue.extend({
   color: #29adeb;
   cursor: pointer;
 }
+.chart_active {
+  color: #ff5f5f !important;
+}
 .chartHeader > span:first-child {
   margin-left: 10px;
 }
@@ -184,8 +212,5 @@ export default Vue.extend({
 .exportExcel {
   color: #29adeb;
   cursor: pointer;
-}
-.chart_active{
-  color: #ff5f5f!important;
 }
 </style>

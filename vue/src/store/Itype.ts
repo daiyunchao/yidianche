@@ -30,7 +30,7 @@ interface IRender {
 interface IColumn {
   name: string,
   key: string,
-  render: IRender
+  render?: IRender
 }
 
 interface IDataItem {
