@@ -10,7 +10,7 @@
       </div>
       <div slot="publish_article">
         <div class="publish_article">
-          <div class="toast">标题字数需在11字到30字之间。</div>
+          <Toast>标题字数需在11字到30字之间。</Toast>
           <div class="title_con">
             <input type="text" class="title_txt" placeholder="请输入标题，为了更好的展示效果，建议标题字数在30个汉字以内" />
             <div class="txt_num_ts">
@@ -53,7 +53,7 @@
       </div>
       <div slot="publish_imgs">
         <div class="public_imgs">
-          <div class="toast">标题字数需在11字到30字之间。</div>
+          <Toast>标题字数需在11字到30字之间。</Toast>
           <div class="cloumn">
             <div class="flex_label">标题</div>
             <div class="flex_content">
@@ -105,6 +105,7 @@ import Vue from "vue";
 import Editor from "../compoents/TinyEditor.vue";
 import { ITab } from "../store/Itype";
 import ContentManage from "../compoents/ContentManage.vue";
+import Toast from "../compoents/Toast.vue";
 export default Vue.extend({
   data() {
     let publish_article: ITab = {
@@ -127,7 +128,8 @@ export default Vue.extend({
   },
   components: {
     Editor,
-    ContentManage
+    ContentManage,
+    Toast
   },
   methods: {
     changeHeaderTab(keyName) {
@@ -178,13 +180,6 @@ export default Vue.extend({
   color: #666;
   z-index: 2;
   cursor: pointer;
-}
-.toast {
-  height: 40px;
-  background: #fceded;
-  padding: 0 20px;
-  line-height: 40px;
-  color: #666;
 }
 .title_con {
   width: 100%;

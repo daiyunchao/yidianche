@@ -9,11 +9,6 @@
   display: none;
 }
 
-.flexCenter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .disabled {
   cursor: no-drop !important
@@ -57,6 +52,13 @@
 
 .pdl40 {
   padding-left: 40px;
+}
+
+
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flexStart {
