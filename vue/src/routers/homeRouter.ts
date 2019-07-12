@@ -5,12 +5,13 @@ import Publish from '../pages/Publish.vue';
 import ArticleManage from '../pages/ArticleManage.vue';
 import ArticleSync from '../pages/ArticleSync.vue';
 import Assets from '../pages/Asset.vue';
+import Subscribe from '../pages/Subscribe.vue'
 export default new VueRoter({
   routes: [
     {
       path: '/',
       name: 'index',
-      component: Assets
+      component: Subscribe
     }
   ]
 })
