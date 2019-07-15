@@ -4,6 +4,9 @@
   font-size: 14px;
   font-family: 'PingFangSC', 'helvetica neue', 'hiragino sans gb', 'arial', 'microsoft yahei ui', 'microsoft yahei', 'simsun', 'sans-serif' !important;
 }
+html,body{
+  height: 100%;
+}
 
 *::-webkit-scrollbar {
   display: none;
