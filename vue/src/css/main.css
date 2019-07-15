@@ -83,3 +83,6 @@
 .link{
   text-decoration: none;
 }
+.stars>img{
+  width: 18px;
+}

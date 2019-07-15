@@ -10,12 +10,13 @@ import ContentData from '../pages/ContentData.vue'
 import StarLevel from '../pages/StarLevel.vue'
 import AccountInfo from '../pages/AccountInfo.vue'
 import AccoutInfoEdit from '../pages/AccountInfoEdit.vue'
+import AccountStatus from '../pages/AccountStatus.vue'
 export default new VueRoter({
   routes: [
     {
       path: '/',
       name: 'index',
-      component: AccoutInfoEdit
+      component: AccountStatus
     }
   ]
 })
