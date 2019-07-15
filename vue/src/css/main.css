@@ -71,3 +71,12 @@
   justify-content: space-between;
   align-items: center;
 }
+.theme_btn{
+  width: 125px;
+  height: 35px;
+  border-radius: 3px;
+  color: white;
+  text-align: center;
+  line-height: 35px;
+  background: #ff5f5f;
+}
