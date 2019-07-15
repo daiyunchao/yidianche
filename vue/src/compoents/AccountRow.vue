@@ -1,5 +1,5 @@
 <template>
-  <div class="flexBetween">
+  <div class="flexBetween" style="align-items:flex-start" :style="row_style" >
     <div class="info">
       <slot name="left" />
     </div>
@@ -13,7 +13,18 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "AccountRow"
+  props:["isEdit"],
+  name: "AccountRow",
+  data(){
+    let row_style="";
+    if (this.$props.isEdit) {
+      //如果是编辑状态
+      row_style="margin-bottom:40px"
+    }
+    return {
+      row_style
+    }
+  }
 });
 </script>
 
