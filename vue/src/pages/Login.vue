@@ -28,7 +28,7 @@
       <div class="ext_info flexCenter">
         <div class="login_btn">登录</div>
       </div>
-      <div class="flexCenter mgt40 question"><a class="link" href="">立即注册</a> | <a href="" class="link">常见问题</a></div>
+      <div class="flexCenter mgt40 question"><a class="link" @click="gotoRegister">立即注册</a> | <a href="" class="link">常见问题</a></div>
     </div>
 
     <div class="footer">
@@ -44,6 +44,11 @@ export default Vue.extend({
   name: "Login",
   components: {
     Footer
+  },
+  methods:{
+gotoRegister(){
+  this.$router.push({path:"/register"});
+}
   },
   computed: {}
 });

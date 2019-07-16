@@ -27,6 +27,16 @@ export default new VueRoter({
       path: "/helper",
       name: "helper",
       component: NavHelper
-    }
+    },
+    {
+      path: "/helper/*",
+      name: "helper",
+      component: NavHelper
+    },
+    {
+      path: '/admin/*',
+      name: 'index',
+      component: Index
+    },
   ]
 })

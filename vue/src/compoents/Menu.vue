@@ -6,6 +6,7 @@
         :class="item.isActive?'active':''"
         :key="item.cnName"
         :style="item.isDisabled?{color:'#999',cursor:'auto'}:''"
+        @click="goPage(item,item.routerName)"
         @mousemove="changeActive(item.cnName)"
         @mouseout="changeActiveLeave(item.cnName)"
       >
@@ -32,13 +33,15 @@ export default Vue.extend({
               icon: "ydc-icon ydc-icon-home fl",
               isActive: true,
               isCur: true,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/home"
             },
             {
               cnName: "发布",
               icon: "ydc-icon ydc-icon-find fl",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/publish"
             }
           ]
         },
@@ -56,19 +59,22 @@ export default Vue.extend({
               cnName: "内容管理",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/articlemanage"
             },
             {
               cnName: "内容同步",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/articlesync"
             },
             {
               cnName: "素材管理",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/assets"
             }
           ]
         },
@@ -86,19 +92,22 @@ export default Vue.extend({
               cnName: "订阅数据",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/subscribe"
             },
             {
               cnName: "内容数据",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/contentdata"
             },
             {
               cnName: "指数星级",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/starlevel"
             }
           ]
         },
@@ -116,13 +125,15 @@ export default Vue.extend({
               cnName: "账号信息",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/accountinfo"
             },
             {
               cnName: "账号状态",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/admin/accountstatus"
             }
           ]
         },
@@ -140,7 +151,8 @@ export default Vue.extend({
               cnName: "在线客服",
               icon: "",
               isActive: false,
-              isDisabled: false
+              isDisabled: false,
+              routerName: "/helper/index"
             }
           ]
         }
@@ -168,6 +180,15 @@ export default Vue.extend({
         }
       }
     },
+    removeCur() {
+      for (let index = 0; index < this.menus.length; index++) {
+        const menu = this.menus[index];
+        for (let j = 0; j < menu.items.length; j++) {
+          const item = menu.items[j];
+          item.isCur = false;
+        }
+      }
+    },
     changeActiveLeave() {
       for (let index = 0; index < this.menus.length; index++) {
         const menu = this.menus[index];
@@ -177,6 +198,20 @@ export default Vue.extend({
             item.isActive = false;
           }
         }
+      }
+    },
+    goPage(menuItem, routerName) {
+      console.log("this.$router===>", this.$router);
+
+      if (menuItem.isDisabled) {
+        return;
+      }
+      if (`/helper/index`) {
+        this.$root_router.push(`/helper/index`);
+      } else {
+        this.removeCur();
+        menuItem.isCur = true;
+        this.$router.push(routerName);
       }
     }
   }

@@ -99,6 +99,7 @@ body {
   text-align: center;
   line-height: 35px;
   background: #ff5f5f;
+  cursor: pointer;
 }
 
 .white_btn {
@@ -109,10 +110,12 @@ body {
   color: #ff5f5f;
   text-align: center;
   line-height: 35px;
+  cursor: pointer;
 }
 
 .link {
   text-decoration: none;
+  cursor: pointer;
 }
 
 .stars>img {

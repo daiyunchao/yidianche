@@ -6,6 +6,7 @@ Vue.use(VueAwesomeSwiper)
 import 'swiper/dist/css/swiper.css';
 import './css/icon.css';
 import './css/main.css';
+Vue.prototype.$root_router=routers;
 new Vue({
   el: '#root',
   router: routers,

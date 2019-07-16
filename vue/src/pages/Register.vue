@@ -33,13 +33,16 @@
           </span>
         </div>
         <div class="register_btn mgt20 flexStart">
-          <div class="theme_btn divcenter">登录</div>
+          <div class="theme_btn divcenter" @click="loginIn">登录</div>
         </div>
       </div>
 
       <div class="register_select_type mgt80" v-if="isShowSelectType">
         <div class="flexCenter w800 divcenter">
-          <div class="media select_item flex1">
+          <div
+            :class="mediaActive?'media select_item flex1 select_item_active':'media select_item flex1 '"
+            @click="selectItem('media')"
+          >
             <div class="select_item_img_con">
               <div class="select_item_img">
                 <img src="../images/mt1.png" alt srcset />
@@ -51,7 +54,10 @@
               </div>
             </div>
           </div>
-          <div class="mediaself select_item flex1">
+          <div
+            :class="mediaSelfActive?'mediaself select_item flex1 select_item_active':'mediaself select_item flex1 '"
+            @click="selectItem('media_self')"
+          >
             <div class="select_item_img_con">
               <div class="select_item_img">
                 <img src="../images/mt2.png" alt srcset />
@@ -63,7 +69,10 @@
               </div>
             </div>
           </div>
-          <div class="org select_item flex1">
+          <div
+            :class="orgActive?'org select_item flex1 select_item_active':'org select_item flex1 '"
+            @click="selectItem('org')"
+          >
             <div class="select_item_img_con">
               <div class="select_item_img">
                 <img src="../images/mt3.png" alt srcset />
@@ -75,7 +84,10 @@
               </div>
             </div>
           </div>
-          <div class="company select_item flex1">
+          <div
+            :class="companyActive?'company select_item flex1 select_item_active':'company select_item flex1 '"
+            @click="selectItem('company')"
+          >
             <div class="select_item_img_con">
               <div class="select_item_img">
                 <img src="../images/mt4.png" alt srcset />
@@ -89,7 +101,7 @@
           </div>
         </div>
         <div class="register_btn mgt20 flexStart">
-          <div class="theme_btn divcenter">下一步</div>
+          <div class="theme_btn divcenter" @click="selectTypeComplte">下一步</div>
         </div>
       </div>
 
@@ -221,8 +233,8 @@
         <AccountRow :isEdit="isEdit">
           <div slot="left"></div>
           <div slot="right" class="btns flexStart">
-            <div class="white_btn mrt10">上一步</div>
-            <div class="theme_btn">提交申请</div>
+            <div class="white_btn mrt10" @click="goBack">上一步</div>
+            <div class="theme_btn" @click="postRequest">提交申请</div>
           </div>
         </AccountRow>
       </div>
@@ -261,19 +273,62 @@ export default Vue.extend({
   data() {
     return {
       isEdit: true,
-      isShowLogin: false,
+      isShowLogin: true,
       isShowSelectType: false,
-      isShowInputMediaInfo: true,
+      isShowInputMediaInfo: false,
       adImgs: ["../images/ad1.jpg", "../images/ad2.jpg", "../images/ad3.jpg"],
-      name: "一点车",
-      desc: "一点车,让你更懂一点车",
-      user_name: "李嘉华",
-      user_idnumber: "411424199108070665",
-      user_phone: "13980002336",
-      user_email: "aui_cn@163.com",
-      user_contact: "super_storm",
-      user_tj: "大屁股"
+      name: "",
+      desc: "",
+      user_name: "",
+      user_idnumber: "",
+      user_phone: "",
+      user_email: "",
+      user_contact: "",
+      user_tj: "",
+
+      mediaActive: false,
+      mediaSelfActive: false,
+      orgActive: false,
+      companyActive: false
     };
+  },
+  methods: {
+    loginIn() {
+      this.isShowLogin = false;
+      this.isShowSelectType = true;
+      this.isShowInputMediaInfo = false;
+    },
+    selectItem(typeName) {
+      console.log("===>", typeName);
+
+      this.mediaActive = false;
+      this.mediaSelfActive = false;
+      this.companyActive = false;
+      this.orgActive = false;
+      if (typeName == "media") {
+        this.mediaActive = true;
+      }
+      if (typeName == "media_self") {
+        this.mediaSelfActive = true;
+      }
+      if (typeName == "org") {
+        this.orgActive = true;
+      }
+      if (typeName == "company") {
+        this.companyActive = true;
+      }
+    },
+    selectTypeComplte() {
+      this.isShowLogin = false;
+      this.isShowSelectType = false;
+      this.isShowInputMediaInfo = true;
+    },
+    goBack(){
+      this.loginIn();
+    },
+    postRequest(){
+      this.$router.push({path:"/"})
+    }
   }
 });
 </script>
@@ -340,6 +395,9 @@ export default Vue.extend({
   width: 175px;
   height: 240px;
   margin: 0 15px;
+}
+.select_item_active {
+  background: rgb(248, 224, 227);
 }
 .select_item:hover {
   background: rgb(248, 224, 227);
