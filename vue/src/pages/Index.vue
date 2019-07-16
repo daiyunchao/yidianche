@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Nav v-if="isShowMainPage"></Nav>
+    <Nav></Nav>
   </div>
 </template>
 <script lang="ts">

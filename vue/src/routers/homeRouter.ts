@@ -16,7 +16,7 @@ export default new VueRoter({
     {
       path: '/',
       name: 'index',
-      component: AccountStatus
+      component: AccoutInfoEdit
     }
   ]
 })

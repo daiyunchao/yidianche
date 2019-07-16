@@ -178,6 +178,7 @@ export default Vue.extend({
   height: 40px;
   border: 1px solid #ccc;
   padding-left: 10px;
+  outline: none;
 }
 .item_info {
   margin-top: 10px;
