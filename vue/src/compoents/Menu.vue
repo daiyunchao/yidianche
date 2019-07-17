@@ -206,7 +206,7 @@ export default Vue.extend({
       if (menuItem.isDisabled) {
         return;
       }
-      if (`/helper/index`) {
+      if (`/helper/index`==routerName) {
         this.$root_router.push(`/helper/index`);
       } else {
         this.removeCur();
