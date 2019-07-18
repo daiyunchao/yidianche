@@ -62,7 +62,7 @@ module.exports = {
       path.join(__dirname, './dist')
     ],
     host: "127.0.0.1",
-    port: 8800,
+    port: 8090,
     hot: true,
     overlay: true,
   }
